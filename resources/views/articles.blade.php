@@ -9,5 +9,10 @@
 </head>
 <body>
 <h1>Listes des articles</h1>
+@foreach($posts as $post)
+<h3>{{ $post }}</h3>
+@endforeach
+
+
 </body>
 </html>
