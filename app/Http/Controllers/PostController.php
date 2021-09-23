@@ -3,31 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = [
-         'Mon super premier titre',
-         'Mon super dexieme titre'
-            ];
+        Post::find(12);
 
-        return view('articles', compact('posts'));
+        $post->delete();
+        dd('supprimer')
+
+        $posts = Post::orderBy('title')->take(3)->get();
+
+        return view('articles', [
+            'posts' => $posts
+        ]);
     }
 
     public function show($id)
     {
-      $posts = [
-          1 => 'Mon titre n°1',
-          2 => 'Mon titre n°2'
-      ];
+        $post = Post::findOrFail($id);
+        //$post = Post::where('title', 'Aut aperiam similique quia cumque laboriosam.')->first();
 
-      $post = $posts[$id] ?? 'pas de titre';
 
       return view('article', [
        'post' => $post
       ]);
+    }
+
+    public function create()
+    {
+        return view('form');
+    }
+
+    public function store(Request $request)
+    {
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+
+       dd('post créé');
     }
 
     public function contact()
