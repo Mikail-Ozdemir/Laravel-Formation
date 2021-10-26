@@ -9,12 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        Post::find(12);
-
-        $post->delete();
-        dd('supprimer')
-
-        $posts = Post::orderBy('title')->take(3)->get();
+        $posts = Post::all();
 
         return view('articles', [
             'posts' => $posts
