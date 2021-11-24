@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -10,9 +12,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $video = Video::find(1);
 
         return view('articles', [
-            'posts' => $posts
+            'posts' => $posts,
+            'video' => $video
         ]);
     }
 
@@ -46,5 +50,20 @@ class PostController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    public function register()
+    {
+      $post = Post::find(11);
+      $video = Video::find(1);
+
+      $comment1 = new Comment(['content' => 'Mon premier commentaire']);
+      $comment2 = new Comment(['content' => 'Mon deuxième commentaire']);
+      $post->comments()->saveMany([
+          $comment1,
+          $comment2
+      ]);
+      $comment3 = new Comment(['content' => 'Mon troisième commentaire']);
+      $video->comments()->save($comment3);
     }
 }
