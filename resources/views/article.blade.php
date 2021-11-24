@@ -16,7 +16,11 @@
     @empty
         <span>Aucun tags pour ce post.</span>
     @endforelse
-    <hr>
+    {{-- <hr>
 
-    <span>Nom de l'artiste de l'image : {{ $post->imageArtist->name }} </span>
+   <span>Nom de l'artiste de l'image : {{ $post->imageArtist->name }} </span>
+    J'GARDE LE HAUT JUSTE POUR EXEMPLE --}}
+    {{--<span>Commentaire le plus récent : {{ $post->latestComment->content }}</span>
+    <span>Commentaire le plus récent : {{ $post->oldestComment->content }}</span>--}}
+
 @endsection

@@ -30,13 +30,23 @@ class Post extends Model
         return $this->hasOne(Image::class);
     }
 
-    public function imageArtist()
-    {
-        return $this->hasOneThrough(Artist::class, Image::class);
-    }
+    //public function imageArtist()
+    //{
+    //    return $this->hasOneThrough(Artist::class, Image::class);
+    //}
 
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function latestComment()
+    {
+        return $this->hasOne(Comment::class)->latestOfMany();
+    }
+
+    public function oldestComment()
+    {
+        return $this->hasOne(Comment::class)->oldestOfMany();
     }
 }
