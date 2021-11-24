@@ -16,5 +16,7 @@
     @empty
         <span>Aucun tags pour ce post.</span>
     @endforelse
+    <hr>
 
+    <span>Nom de l'artiste de l'image : {{ $post->imageArtist->name }} </span>
 @endsection
