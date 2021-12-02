@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Video;
+use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -38,13 +39,10 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-
-        dd($request->avatar->store('avatars'));
-        // $post = new Post();
-
-        // $post->title = $request->title;
-        // $post->content = $request->content;
-        // $post->save();
+        $request->validate([
+            'title'=> ['required', 'max:255', 'min:5', 'unique:posts', new Uppercase],
+            'content'=> ['required']
+        ]);
 
         Post::create([
             'title' => $request->title,
