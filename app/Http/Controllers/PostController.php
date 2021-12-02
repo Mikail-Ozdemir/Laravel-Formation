@@ -38,6 +38,14 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+        dd($request->avatar->store('avatars'));
+        // $post = new Post();
+
+        // $post->title = $request->title;
+        // $post->content = $request->content;
+        // $post->save();
+
         Post::create([
             'title' => $request->title,
             'content' => $request->content
